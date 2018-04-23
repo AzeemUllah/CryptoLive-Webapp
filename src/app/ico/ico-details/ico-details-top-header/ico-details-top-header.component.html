@@ -1,0 +1,114 @@
+<section id="ico-stats-brief">
+  <div class="container" >
+    <div class="row">
+
+      <div class="col-md-6">
+        <div class="row" style="margin-bottom: 50px;">
+
+          <div class="col-md-3 col-xs-3" style="padding-top: 25px;">
+            <img src='{{icoDetails.image}}' class="img-responsive" alt="ico-logo">
+          </div>
+
+          <div class="col-md-9 col-xs-9">
+            <h3 style="font-weight: 300;">{{icoDetails.name}} <span class="premium-icon" style="letter-spacing: 3px;">PREMIUM</span></h3>
+            <p style="letter-spacing: 2px;font-size: 1.1em;color: #464545;line-height: 26px;font-weight: 200;">{{icoDetails.description}}</p>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 launch-card" style="color:#1FA1B5;"><h3>{{countDown_days(icoDetails.end_time)}} <br /><span style="color: #AAAAAA;font-size:0.6em;font-weight: 200;">Days</span></h3></div>
+          <div class="col-md-3 launch-card" style="color:#1FA1B5;"><h3>{{countDown_hours(icoDetails.end_time)}} <br /><span style="color: #AAAAAA;font-size:0.6em;font-weight: 200;">Hours</span></h3></div>
+          <div class="col-md-3 launch-card" style="color:#1FA1B5;"><h3>{{countDown_minutes(icoDetails.end_time)}} <br /><span style="color: #AAAAAA;font-size:0.6em;font-weight: 200;">Minutes</span></h3></div>
+          <div class="col-md-2 launch-card" style="color:#1FA1B5;"><h3>{{countDown_seconds(icoDetails.end_time)}} <br /><span style="color: #AAAAAA;font-size:0.6em;font-weight: 200;">Seconds</span></h3></div>
+        </div>
+
+
+      </div>
+
+      <div class="col-md-6  shadow-ratedDiv">
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <h1 class="ratePoint">{{calculateTotalRating()}}</h1> <sub class="subscript">/5</sub>
+
+            <p class="rating-icon">
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+              <i class="fa fa-star" aria-hidden="true"></i>
+
+            <p class="beforeIcon-ratingStar">
+              Based on {{totalCount-1}} reviews over the past year
+            </p>
+          </div>
+
+          <div class="col-md-5 col-xs-12 progressBar">
+            <div class="row rating-row-1">
+              <div class="col-md-1 col-xs-1 num-rating">5</div>
+              <div class="col-md-1 col-xs-1"><i class="fa fa-star star" aria-hidden="true"></i></div>
+              <div class="col-md-7 col-xs-7 progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                     aria-valuemin="0" aria-valuemax="100" [style.width.%]="((occuranceFive/(occuranceOne+occuranceTwo+occuranceThree+occuranceFour+occuranceFive))*127)" >
+                  <span class="sr-only">70% Complete</span>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1 num-rating num-rat">{{occuranceFive}}</div>
+            </div>
+
+            <div class="row rating-row-2">
+              <div class="col-md-1 col-xs-1 num-rating">4</div>
+              <div class="col-md-1 col-xs-1"><i class="fa fa-star star" aria-hidden="true"></i></div>
+              <div class="col-md-7 col-xs-7 progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                     aria-valuemin="0" aria-valuemax="100" [style.width.%]="((occuranceFour/(occuranceOne+occuranceTwo+occuranceThree+occuranceFour+occuranceFive))*127)">
+                  <span class="sr-only">70% Complete</span>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1 num-rating">{{occuranceFour}}</div>
+            </div>
+
+            <div class="row rating-row-3">
+              <div class="col-md-1 col-xs-1 col-xs-1 num-rating">3</div>
+              <div class="col-md-1 col-xs-1 col-xs-1"><i class="fa fa-star star" aria-hidden="true"></i></div>
+              <div class="col-md-7 col-xs-7 col-xs-7 progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                     aria-valuemin="0" aria-valuemax="100" [style.width.%]="((occuranceThree/(occuranceOne+occuranceTwo+occuranceThree+occuranceFour+occuranceFive))*127)">
+                  <span class="sr-only">70% Complete</span>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1 num-rating">{{occuranceThree}}</div>
+            </div>
+            <div class="row rating-row-4">
+              <div class="col-md-1 col-xs-1 num-rating">2</div>
+              <div class="col-md-1 col-xs-1"><i class="fa fa-star star" aria-hidden="true"></i></div>
+              <div class="col-md-7 col-xs-7 progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                     aria-valuemin="0" aria-valuemax="100" [style.width.%]="((occuranceTwo/(occuranceOne+occuranceTwo+occuranceThree+occuranceFour+occuranceFive))*127)">
+                  <span class="sr-only">70% Complete</span>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1 num-rating">{{occuranceTwo}}</div>
+            </div>
+
+            <div class="row rating-row-5">
+              <div class="col-md-1 col-xs-1 num-rating">1</div>
+              <div class="col-md-1 col-xs-1"><i class="fa fa-star star" aria-hidden="true"></i></div>
+              <div class="col-md-7 col-xs-7 progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                     aria-valuemin="0" aria-valuemax="100" [style.width.%]="((occuranceOne/(occuranceOne+occuranceTwo+occuranceThree+occuranceFour+occuranceFive))*127)">
+                  <span class="sr-only">70% Complete</span>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-1 num-rating">{{occuranceOne}}</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</section>

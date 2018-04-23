@@ -1,0 +1,68 @@
+<!-- RIGHT ICO PANELS START -->
+<section id="ico-listing">
+
+  <div class="container">
+    <div class="row">
+      <section id="ico-listing-item">
+
+        <div *ngFor="let ico of icoList; let i = index" (click)="gotoIcoDetails(i)" class="col-md-12 ico-card">
+          <p style="display: none;">{{i+1}}</p>
+          <a  style="text-decoration: none;">
+            <div class="row">
+              <div class="col-md-2 col-xs-3"><img src="{{ico.image}}" style="margin-top: 40px; width: 80%; height: 30%;"></div>
+              <div class="col-md-10 col-xs-9">
+                <h3>{{ico.name}}</h3>
+                <div class="col-md-4 col-xs-12">
+                  <p class="last-cont" style="margin-left: -15px;">{{ico.description}}</p>
+                </div>
+                <div class="col-md-4 col-xs-12 timer" style="margin-top: -38px;">
+                  <div class="row col-xs-12">
+                    <p class="end-time">END IN</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 col-xs-6 endDate">
+                      <div class="col-md-4 col-xs-4">
+                        <h3 class="end-date">{{countDown_days(ico.end_time)}}</h3>
+                        <p class="end-days">Days</p>
+                      </div>
+                      <div class="col-md-4 col-xs-4">
+                        <h3 class="end-date">{{countDown_hours(ico.end_time)}}</h3>
+                        <p class="end-hours">Hours</p>
+                      </div>
+                      <div class="col-md-4 col-xs-4">
+                        <h3 class="end-date">{{countDown_minutes(ico.end_time)}}</h3>
+                        <p class="end-minut">Minutes</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="row">
+                    <div class="col-md-6 col-xs-6 rateDiv" style="width: 100%; margin-top: -60px; color: rgb(53, 160, 179);">
+                      <h1 class="rating-number">{{((icoRatingListConcept[i]+icoRatingListTeam[i]+icoRatingListWhitepaper[i])/((icoRatingListTotalCount[i]-1)*3)).toFixed(1)}} <sub class="subscript-rating" style="font-size: 0.4em;">/5</sub></h1>
+                      <!--<p class="rating-icon-fa"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></p>-->
+                      <p class="beforeIcon-ratingStar-text">Based on {{(icoRatingListTotalCount[i])}} reviews over the past year</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+
+
+
+        <div class="col-md-12" style="    padding-bottom: 3.5%;">
+          <div class="row">
+            <!--<button style="border: none;border-radius:0;box-shadow: 0 5px 32px 0 rgba(0,0,0,.1);font-weight: 800;margin-top: 20px;margin-bottom: 40px;" type="button" class="btn btn-default btn-block">VIEW ALL</button>-->
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
+
+</section>
+<!-- RIGHT ICO PANELS END -->

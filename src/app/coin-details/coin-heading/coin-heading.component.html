@@ -1,0 +1,41 @@
+<!--TOP HEADING-->
+<section id="cp-heading">
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-8">
+
+        <img class="pull-left img-responsive currency-icon" style="width: 8%;" src="{{image_url}}" alt="{{name}}-icon" />
+        <h2>{{name}} <span>{{symbol}}</span></h2>
+
+        <div class="anchors">
+          <a >Website</a>
+          <a >Explorer</a>
+          <a >Message board</a>
+          <span class="label label-default">#coin</span>
+          <span class="label label-default">#mineable</span>
+        </div>
+
+      </div>
+
+      <div class="col-md-4 price-info" align="right">
+        <div class="row">
+
+          <div class="col-md-8">
+            <h3>$ {{price_usd}} <br /> <span>{{price_btc}} BTC</span></h3>
+          </div>
+
+          <div class="col-md-4">
+            <h4 style="margin-top: 25%;" *ngIf="percent_change_1h > 0" class="in-green-zone">{{percent_change_1h}}% <i class="fa fa-caret-up" aria-hidden="true"></i></h4>
+            <h4 style="margin-top: 25%;" *ngIf="percent_change_1h < 0"  class="in-red-zone">{{percent_change_1h}}% <i class="fa fa-caret-down" aria-hidden="true"></i></h4>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<!--TOP HEADING END-->

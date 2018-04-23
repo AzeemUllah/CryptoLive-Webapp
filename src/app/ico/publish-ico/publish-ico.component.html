@@ -1,0 +1,160 @@
+<section id="publish">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-12 left-sidebar-logo">
+            <h5>LOGO FOR ICO</h5>
+            <div class="previewComponent">
+              <form><input style="width: 100%;" type="file" (change)="uploadFile($event)" class="fileInput"></form>
+              <div class="imgPreview">
+                <div class="previewText">Please select an Image for Preview</div>
+              </div>
+            </div>
+            <label>ICO Name</label><input name="icoName" [(ngModel)]="icoName" type="name" class="form-control input" value="" required="">
+          </div>
+          <div class="col-md-12 left-sidebar-need-help" align="center">
+            <div class="col-md-12"><img src="data:image/png;base64,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" alt="" style="width: 30%; height: 100%;"></div>
+            <div class="col-md-12" align="center">
+              <h4>NEED HELP?</h4>
+              <p align="center">Have question or concerns regrading your ICO application? Our expert are here to help</p>
+              <button type="button" class="btn1">CHAT WITH US</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12 right-content">
+            <div class="col-md-12">
+              <div class="row">
+                <h4>VERIFY YOUR PERSONAL DETAILS</h4>
+                <div class="col-md-7">
+                  <p>Lorem ipsum dolor sit amet, consertetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore et dolore magna aliqua.</p>
+                </div>
+                <div class="col-md-5">
+                  <p><span class="bold">Estimated approval:</span> January 27(3 day left)</p>
+                </div>
+                <div class="col-md-12">
+                  <div class="progress">
+                    <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 33.33%;"><span class="sr-only">70% Complete</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 right-form">
+            <div class="col-md-12">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"  id="homeLink" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="false">ICO APPLICATION DETAIL</a></li>
+                <li role="presentation" id="profileLink" class=""><a href="#profile" aria-controls="profile"  role="tab" data-toggle="tab" aria-expanded="false">ICO DETAIL</a></li>
+                <li role="presentation" id="messagesLink"  class=""><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab" aria-expanded="true">ICO CATEGORY</a></li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                  <div class="form-data">
+                    <div class="col-md-6 form"><label for="name">WEBSITE URL</label><input type="name" name="websiteUrl" [(ngModel)]="websiteUrl" class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="lastname">ABOUT</label><input type="name" name="about" [(ngModel)]="about" class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">SOCIAL MEDIA LINKS</label><input type="name" name="socialMediaLinks" [(ngModel)]="socialMediaLinks" class="form-control" value="" required=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">COUNTRY OF OPERATION</label><input type="name" name="country" [(ngModel)]="country"  class="form-control" value="" required=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">(pre)ICO START DATE</label><input type="name" name="startDate" [(ngModel)]="startDate"  class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">ICO END DATE</label><input type="name" name="endDate" [(ngModel)]="endDate" class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">LINK TO WHITEPAPER</label><input type="name" name="whitepaper" [(ngModel)]="whitepaper" class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">LINK TO ICO WATCHLIST</label><input type="name" name="watchlist" [(ngModel)]="watchlist"  class="form-control"></div>
+                    <div class="col-md-12">
+                      <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about cryptolive. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-2 col-xs-6"></div>
+                        <div class="col-md-7 disclaimer-form" align="right">
+                          <p>By Submitting this application you agree to<a style="color: rgb(77, 182, 172);">cryptolive T&amp;C</a></p>
+                        </div>
+                        <div class="col-md-2 col-xs-6" align="right"><button (click)="next(1)"  type="button" class="btn btn-primary">NEXT</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                  <div class="form-data">
+                    <div class="col-md-6 form"><label for="name">LINK TO BOUNTY</label><input type="name" name="bounty" [(ngModel)]="bounty"  class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="lastname">TOKEN NAME/TICKER</label><input type="name" name="token" [(ngModel)]="token"  class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">PLATFORM AND TOKEN TYPE (e.g. Ethereum, ERC20)</label><input type="name" name="platform" [(ngModel)]="platform"  class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">Whitelist/KYC?</label><input type="name" class="form-control" name="whitelist" [(ngModel)]="whitelist" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail"> ANY RESTRICTIONS IN WHO CAN PARTICIPATE?</label><input type="name" name="restriction" [(ngModel)]="restriction" class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">Contact e-mail</label><input type="email" class="form-control" name="email" [(ngModel)]="email" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">DESCRIPTION</label><input type="email" class="form-control"  name="description" [(ngModel)]="description" value=""></div>
+                    <div class="col-md-12 "><input type="checkbox"  name="emailPreferance" [(ngModel)]="emailPreferance" value="on" style="width: 30px; height: 20px;"><label>I PREFER EMAIL OVER PHONE CALLS</label></div>
+                    <div class="col-md-12">
+                      <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about cryptolive. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-2 col-xs-6"><button type="button" (click)="goBack(2)"  class="btn btn-default">PREVIOUS</button></div>
+                        <div class="col-md-7 disclaimer-form" align="right">
+                          <p>By Submitting this application you agree to<a style="color: rgb(77, 182, 172);">cryptolive T&amp;C</a></p>
+                        </div>
+                        <div class="col-md-2 col-xs-6" align="right"><button (click)="next(2)"  type="button" class="btn btn-primary">NEXT</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                  <div class="form-data">
+                    <form>
+                      <div class="col-md-4 form">
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="art" name="art" value="false">Art</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="ai" name="ai" value="on">Artificial Intelligence</label></div>
+                        <div class="checkbox "><label><input type="checkbox" [(ngModel)]="banking" name="banking" value="on">Banking</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="bigdata" name="bigdata" value="on">Big Data</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="buissnessServices" name="buissnessServices" value="on">Business services</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="casino" name="casino" value="on">Casino &amp; Gambling</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="manufacturing" name="manufacturing" value="on">Manufacturing</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="media" name="media" value="on">Media</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="sports" name="sports" value="on">Sports</label></div>
+                      </div>
+                      <div class="col-md-4 form">
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="charity" name="charity" value="on">Charity</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="communication" name="communication" value="on">Communication</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="cryptocurrency" name="cryptocurrency" value="on">Cryptocurrency</label></div>
+                        <div class="checkbox"><label><input type="checkbox"  [(ngModel)]="education" name="education" value="on">Education</label></div>
+                        <div class="checkbox"><label><input type="checkbox"  [(ngModel)]="electronics" name="electronics" value="on">Electronics</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="energy" name="energy" value="on">Energy</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="platform_cat" name="platform_cat" value="on">Platform</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="realstate" name="realstate" value="on">Real estate</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="tourism" name="tourism" value="on">Tourism</label></div>
+                      </div>
+                      <div class="col-md-4 form">
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="entertainment" name="entertainment" value="on">Entertainment</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="health" name="health" value="on">Health</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="infrastructure" name="infrastructure" value="on">Infrastructure</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="internet" name="internet" value="on">Internet</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="investment" name="investment" value="on">Investment</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="legal" name="legal" value="on">Legal</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="smartContract" name="smartContract" value="on">Smart Contract</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="software" name="software" value="on">Software</label></div>
+                        <div class="checkbox"><label><input type="checkbox" [(ngModel)]="virtualReality" name="virtualReality" value="on">Virtual Reality</label></div>
+                      </div>
+                      <div class="col-md-12">
+                        <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about cryptolive. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-2 col-xs-6"><button type="button" class="btn btn-default" (click)="goBack(3)">PREVIOUS</button></div>
+                          <div style="text-align: center;" class="col-md-7 disclaimer-form" >
+                            <p>By Submitting this application you agree to<a style="color: rgb(77, 182, 172); margin-left: 1px;"> cryptolive T&amp;C</a></p>
+                          </div>
+                          <div class="col-md-2 col-xs-6" align="right"><button (click)="next(3)"  type="button" class="btn btn-primary">FINISH</button></div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

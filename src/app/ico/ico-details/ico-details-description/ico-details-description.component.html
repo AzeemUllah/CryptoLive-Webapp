@@ -1,0 +1,316 @@
+
+<!-- DESCRIPTION STARTS -->
+<section id="description" style="padding-top: 60px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="nav-border">
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist" style="text-decoration: none">
+            <li role="presentation" class="active">
+              <a href="#home" aria-controls="home" role="tab" data-toggle="tab">ABOUT</a>
+            </li>
+            <li role="presentation">
+              <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">TEAM</a>
+            </li>
+            <li role="presentation">
+              <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">MILESTONES</a>
+            </li>
+            <li role="presentation">
+              <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">FINANCIALS</a>
+            </li>
+            <li role="presentation">
+              <a href="#RATING" aria-controls="settings" role="tab" data-toggle="tab">RATING</a>
+            </li>
+            <li role="presentation">
+              <a href="#WHITEPAPER" aria-controls="settings" role="tab" data-toggle="tab">WHITE PAPER</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home" [innerHTML]="icoDetails.about"></div>
+            <div role="tabpanel" class="tab-pane" id="profile" [innerHTML]="icoDetails.team"></div>
+            <div role="tabpanel" class="tab-pane" id="messages" [innerHTML]="icoDetails.milestones"></div>
+            <div role="tabpanel" class="tab-pane" id="settings" [innerHTML]="icoDetails.financials"></div>
+            <div role="tabpanel" class="tab-pane" id="RATING" [innerHTML]="icoDetails.rating"></div>
+            <div role="tabpanel" class="tab-pane" id="WHITEPAPER" [innerHTML]="icoDetails.white_paper"></div>
+          </div>
+
+        </div>
+      </div>
+      <div  class="row col-md-4 steve" style="padding-bottom: 5%;">
+
+
+
+        <div class="nav-border">
+
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist" style="text-decoration: none">
+            <li role="presentation" class="active">
+              <a href="#rating-box" style="color: #327ab7;" aria-controls="rating" role="tab" data-toggle="tab">Your Rating</a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+
+
+              <div *ngIf="isRated && isLoggedIn" style="margin-top: 5%; margin-bottom: 5%;">
+                <div class="row">
+                  <div class=" col-md-offset-5 col-md-6"><i class="fa fa-check-circle-o" style="color: #0097a7; font-size: 500%" aria-hidden="true"></i></div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12" style="text-align: center; font-size: 150%;">Thank you for your rating!</div>
+                </div>
+              </div>
+
+
+
+              <div *ngIf="!isLoggedIn" style="margin-top: 5%; margin-bottom: 5%;">
+                <div class="row">
+                  <div class=" col-md-offset-5 col-md-6"><i class="fa fa-ban" style="color: #0097a7; font-size: 500%" aria-hidden="true"></i></div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12" style="text-align: center; font-size: 150%;">You need to be logged in to rate ICO!</div>
+                </div>
+              </div>
+
+
+
+            <div *ngIf="!isRated && isLoggedIn">
+              <div class="row" style="    margin-top: 5%;">
+                <div class="col-md-3">
+                  <h4 _ngcontent-c8="" style="margin: 0;margin-left: 40%;font-size:1.3em;font-weight: 200;padding-bottom: 15px;">Team</h4>
+                </div>
+                <div class="col-md-9" style="text-align: center;">
+                  <input type="radio" value="0" (click)="checked('team','0')" class="display-none" name="stars-team" checked id="star-team-null" />
+                  <input type="radio" value="1" (click)="checked('team','1')" class="display-none" name="stars-team" id="star-team-1" />
+                  <input type="radio" value="2" (click)="checked('team','2')" class="display-none" name="stars-team" id="star-team-2" />
+                  <input type="radio" value="3" (click)="checked('team','3')" class="display-none" name="stars-team" id="star-team-3" />
+                  <input type="radio" value="4" (click)="checked('team','4')" class="display-none" name="stars-team" id="star-team-4"  />
+                  <input type="radio" value="5" (click)="checked('team','5')" class="display-none" name="stars-team" id="star-team-5" />
+
+                  <section>
+                    <label for="star-team-1">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-team-2">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-team-3">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-team-4">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-team-5">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                  </section>
+                </div>
+              </div>
+
+
+              <div class="row" style="    margin-top: 5%;">
+                <div class="col-md-3">
+                  <h4 _ngcontent-c8="" style="margin: 0;margin-left: 40%;font-size:1.3em;font-weight: 200;padding-bottom: 15px;">Concept</h4>
+                </div>
+                <div class="col-md-9" style="    text-align: center;">
+                  <input type="radio" (click)="checked('concept','0')" class="display-none" name="stars-concept" checked id="star-concept-null" />
+                  <input type="radio" (click)="checked('concept','1')" class="display-none" name="stars-concept" id="star-concept-1" />
+                  <input type="radio" (click)="checked('concept','2')" class="display-none" name="stars-concept" id="star-concept-2" />
+                  <input type="radio" (click)="checked('concept','3')" class="display-none" name="stars-concept" id="star-concept-3" />
+                  <input type="radio" (click)="checked('concept','4')" class="display-none" name="stars-concept" id="star-concept-4"  />
+                  <input type="radio" (click)="checked('concept','5')" class="display-none" name="stars-concept" id="star-concept-5" />
+
+                  <section>
+                    <label for="star-concept-1">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-concept-2">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-concept-3">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-concept-4">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-concept-5">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                  </section>
+                </div>
+              </div>
+
+
+              <div class="row" style="    margin-top: 5%;">
+                <div class="col-md-3">
+                  <h4 _ngcontent-c8="" style="margin: 0;margin-left: 40%;font-size:1.3em;font-weight: 200;padding-bottom: 15px;">Whitepaper</h4>
+                </div>
+                <div class="col-md-9" style="    text-align: center;">
+                  <input type="radio" (click)="checked('whitepaper','0')" class="display-none" name="stars-whitepaper" checked id="star-whitepaper-null" />
+                  <input type="radio" (click)="checked('whitepaper','1')" class="display-none" name="stars-whitepaper" id="star-whitepaper-1" />
+                  <input type="radio" (click)="checked('whitepaper','2')" class="display-none" name="stars-whitepaper" id="star-whitepaper-2" />
+                  <input type="radio" (click)="checked('whitepaper','3')" class="display-none" name="stars-whitepaper" id="star-whitepaper-3" />
+                  <input type="radio" (click)="checked('whitepaper','4')" class="display-none" name="stars-whitepaper" id="star-whitepaper-4"  />
+                  <input type="radio" (click)="checked('whitepaper','5')" class="display-none" name="stars-whitepaper" id="star-whitepaper-5" />
+
+                  <section>
+                    <label for="star-whitepaper-1">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-whitepaper-2">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-whitepaper-3">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-whitepaper-4">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                    <label for="star-whitepaper-5">
+                      <svg width="255" height="240" viewBox="0 0 51 48">
+                        <path d="m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z"/>
+                      </svg>
+                    </label>
+                  </section>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--<div  class="col-md-4 content" style="height: 250px;" align="center">-->
+        <!-- <img style="padding-top: 30px;padding-left: 110px" src="icons/Bitmap.png" alt="logo" style="width: 50%"> -->
+        <!--<img src="icons/Bitmap.png" alt="logo" style="width: 40px; padding-top: 20px">-->
+
+        <!--<p  style="font-weight: bold">John Smith</p>-->
+        <!--<p style="color:grey;text-align: center">Enterpreneur, Blockchain business expert</p>-->
+        <!--<div  class="col-md-12 card-social ">-->
+          <!--<i class="fa fa-facebook fa-1.5x" aria-hidden="true"></i>-->
+          <!--<i class="fa fa-twitter fa-1.5x" aria-hidden="true"></i>-->
+          <!--<i class="fa fa-medium fa-1.5x"></i>-->
+        <!--</div>-->
+        <!--<br>-->
+        <!--<p style="color:grey; padding-top: 10px"> We power provide acces to investments in the field of renewable energy. This project already has a working beta.</p>-->
+        <!--<p style="color:grey; "> WPR token is the  company utility token clarified with European regulator.-->
+          <!--It is structured as a reward based cowdfunding, where contributors can get gree energy as-->
+          <!--a reward and they can either use it or sell on exchange.-->
+        <!--</p>-->
+        <!--<p style="color:grey; "> Due to well done legal work, we evaluate risks for investors as low.</p>-->
+        <!--<div class="col-md-12 text-center">-->
+          <!--<button id="singlebutton" name="singlebutton" class="btn btn-primary" style="width: 300px ;background-color: #0097A7;margin-top:10px ">ORDER FULL LEGAL REVIEW</button>-->
+        <!--</div>-->
+      <!--</div>-->
+
+      <!--<div style="padding-bottom: 20px; margin-bottom: 40px" class="col-md-4 content">-->
+
+
+
+        <!--<div>-->
+
+          <!--&lt;!&ndash; Nav tabs &ndash;&gt;-->
+          <!--<ul class="nav nav-tabs" role="tablist">-->
+            <!--<li role="presentation" class="active">-->
+              <!--<a href="#home" aria-controls="home" role="tab" data-toggle="tab">POSITIVE 4</a>-->
+            <!--</li>-->
+            <!--<li role="presentation">-->
+              <!--<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">NEUTRAL 2</a>-->
+            <!--</li>-->
+            <!--<li role="presentation">-->
+              <!--<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">NEGATIVE 6</a>-->
+            <!--</li>-->
+          <!--</ul>-->
+
+          <!--&lt;!&ndash; Tab panes &ndash;&gt;-->
+          <!--<div class="tab-content">-->
+            <!--<div role="tabpanel" class="tab-pane active" id="home1">...</div>-->
+            <!--<div role="tabpanel" class="tab-pane" id="profile2">...</div>-->
+            <!--<div role="tabpanel" class="tab-pane" id="messages3">...</div>-->
+            <!--<div role="tabpanel" class="tab-pane" id="settings4">...</div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-12">-->
+
+            <!--<div style="padding-top: 10px;" class="col-md-2">-->
+              <!--<img src="icons/Bitmap.png" alt="logo" style="width: 40px; padding-top: 20px">-->
+              <!--&lt;!&ndash; <img  style="padding-top: 40px" src="icons/BTC.png" alt="logo"> &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="col-md-8 jasmine-color">-->
+              <!--<p>Jasmine Jones</p>-->
+              <!--<p> WePower provides access to  investments in the field of renewable energy.This project already-->
+                <!--has a working beta.-->
+              <!--</p>-->
+            <!--</div>-->
+            <!--<div class="col-md-2 right"><p class="p">4</p></div>-->
+          <!--</div>-->
+
+          <!--<hr>-->
+          <!--<div class="col-lg-12">-->
+            <!--&lt;!&ndash;  &ndash;&gt;-->
+            <!--<div style="padding-top: 10px" class="col-md-2">-->
+              <!--<img src="icons/Bitmap.png" alt="logo" style="width: 40px; padding-top: 20px">-->
+              <!--&lt;!&ndash; <img style="padding-top: 40px" src="icons/BTC.png" alt="logo"> &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="col-md-8 jasmine-color">-->
+              <!--<p>Jasmine Jones</p>-->
+              <!--<p> WePower provides access to investments in the field of renewable energy.This project already has a working beta.-->
+              <!--</p>-->
+            <!--</div>-->
+            <!--<div  class="col-md-2 right"><p class="p">4</p></div>-->
+          <!--</div>-->
+
+          <!--<div class="col-lg-12">-->
+
+            <!--<div style="padding-top: 10px" class="col-md-2">-->
+              <!--<img src="icons/Bitmap.png" alt="logo" style="width: 40px; padding-top: 20px">-->
+              <!--&lt;!&ndash; <img style="padding-top: 40px" src="icons/BTC.png" alt="logo"> &ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="col-md-8 jasmine-color">-->
+              <!--<p>Jasmine Jones</p>-->
+              <!--<p> WePower provides access to investments in the field of renewable energy.This project already has a working beta.-->
+              <!--</p>-->
+            <!--</div>-->
+            <!--<div class="col-md-2 right"><p class="p">4</p></div>-->
+          <!--</div>-->
+
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</section>
+<!-- DESCRIPTION ENDS -->

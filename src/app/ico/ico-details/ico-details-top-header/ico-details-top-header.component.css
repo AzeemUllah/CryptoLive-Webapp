@@ -1,0 +1,65 @@
+
+/*new div rating boxShadow*/
+
+.shadow-ratedDiv{
+  padding-bottom: 45px;
+  box-shadow: 0 5px 32px 0 rgba(0,0,0,.1);
+}
+
+.ratePoint {
+  text-align: center;
+  color: #1FA1B5;
+  font-size: 6.5em;
+  font-weight: 500;
+}
+
+.subscript {
+  font-size: 1.9em;
+  position: absolute;
+  top: 50px;
+  right: 56px;
+  color: #9c9c9c;
+}
+
+.fa-star {
+  color: #1FA1B5;
+  font-size: 2em;
+  padding-right: 10px;
+}
+
+.rating-icon{
+  text-align: center;
+}
+
+.star{
+  margin-left: -7px;
+  font-size: 1.4em;
+  color: #cccccc;
+
+}
+
+.num-rating{
+  color: #9c9c9c;
+}
+
+.rating-row-1{
+  margin-top: 30px;
+}
+
+.progress-bar {
+  margin-left: -14px;
+  padding-right: -31px;
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  text-align: center;
+  background-color: #1FA1B5;
+}
+
+.beforeIcon-ratingStar {
+  text-align: center;
+  color: #9c9c9c;
+}

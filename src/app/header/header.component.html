@@ -1,0 +1,146 @@
+<!-- NAVBAR -->
+<section id="navbar-strap">
+  <!-- The navigation bar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="col-md-12" style="background:#000;padding-top: 5px; padding-bottom: 5px">
+      <div class="container">
+        <div class="col-md-12">
+
+          <div class="pull-right right-side-button" >
+            <!--<a  style="padding-right: 10px; color:white" href="#"><img class="top-nav-currency-icon" style="margin-top:-5px;height: 20px;" src="assets/icons/round.png" /></a>-->
+            <a *ngIf="bit=='0'" style="padding-right: 10px; color:white;" data-toggle="modal" data-target="#login">LOGIN</a>
+            <a *ngIf="bit=='0'" style="color:white;" data-toggle="modal" id="signupBtnModalOpen" data-target="#signup">SIGN UP</a>
+            <a *ngIf="bit=='1'" (click)="logout()" style="color:white;">LOGOUT</a>
+          </div>
+
+
+
+          <div id="login" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 style="text-align: center;" class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                  <form style="text-align: center;" id="loginform" class="form-horizontal" role="form" method="post">
+                    <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>
+                      </span><input type="email" [(ngModel)]="loginUserEmail" name="loginUserEmail" class="form-control" value="" placeholder="User Email"  required="" style="width: 200px;">
+                    </div>
+                    <div class="input-group col-md-offset-4" style="margin-bottom: 25px;">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i>
+                      </span><input type="password" class="form-control" value="" placeholder="password"  [(ngModel)]="loginUserPassword" name="loginUserPassword"  required="" style="width: 200px;">
+                    </div>
+                    <!--<div class="input-group " style="width:100%;">-->
+                    <!--<div class="checkbox"><label><input type="checkbox" id="login-remember" name="remember" value="1"> Remember me</label></div>-->
+                    <!--</div>-->
+                    <div class="form-group" style="margin-top: 10px;">
+                      <div class="col-sm-12 controls">
+                        <button type="button" class="btn btn-primary" (click)="login()" style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px; text-align: center; width: 200px; background-color: rgb(0, 151, 167); border-radius: 1px;">Submit</button>
+                        <button type="button" classnamename="btn btn-primary" (click)="facebookAuthSignin()" style="color: rgb(255, 255, 255); text-align: center; height: 35px; margin-right: 30px; margin-bottom: 20px; width: 200px; margin-left: 40px; background-color: rgb(48, 63, 159);">
+                          <i class="fa fa-facebook " aria-hidden="true" style="margin-right: 10px;"></i>Login With Facebook</button>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-12 control">
+                        <div style="border-top: 1px solid rgb(136, 136, 136); padding-top: 15px; font-size: 85%;">Don't have an account!<a href="#" style="padding-left: 5px;">Sign Up Here</a></div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="signup" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 style="text-align: center;" class="modal-title">Signup</h4>
+                </div>
+                <div class="modal-body">
+                  <form style="text-align: center;" id="2" class="form-horizontal" role="form" method="post">
+                    <div   class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="email" class="form-control" value="" placeholder="User Email" [(ngModel)]="signupUserEmail" name="signupUserEmail" required="" style="width: 200px;"></div>
+                    <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span><input type="password" class="form-control" value="" placeholder="password" [(ngModel)]="signupUserPassword" name="signupUserPassword"  required="" style="width: 200px;"></div>
+                    <!--<div class="input-group " style="width:100%;">-->
+                    <!--<div class="checkbox"><label><input type="checkbox" id="" name="remember" value="1"> Remember me</label></div>-->
+                    <!--</div>-->
+                    <div class="form-group" style="margin-top: 10px;">
+                      <div class="col-sm-12 controls"><button (click)="register()" type="button" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px; text-align: center; width: 200px; background-color: rgb(0, 151, 167); border-radius: 1px;">Submit</button>
+                        <button (click)="facebookAuthSignup()" type="button" classnamename="btn btn-primary" style="color: rgb(255, 255, 255); text-align: center; height: 35px; margin-right: 30px; margin-bottom: 20px; width: 200px; margin-left: 40px; background-color: rgb(48, 63, 159);"><i class="fa fa-facebook " aria-hidden="true" style="margin-right: 10px;"></i>Login With Facebook</button></div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-md-12 control">
+                        <div style="border-top: 1px solid rgb(136, 136, 136); padding-top: 15px; font-size: 85%;">Don't have an account!<a href="#" style="padding-left: 5px;">Sign Up Here</a></div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- Making the collapse navigation for mobile viewport -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+
+
+        <a class="navbar-brand" (click)="gotoMarket()">
+          <div class="logo">
+            <img src="assets/img/logo.png" />
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Using the collapse here so that when the breakpoint is triggred this is linked with the menu-->
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a (click)="gotoMarket()"  >
+              MARKETS
+            </a>
+          </li>
+          <li>
+            <a (click)="gotoCrypto()">ICOs</a>
+          </li>
+          <li>
+            <a (click)="gotoAbout()">ABOUT CRYPTOLIVE</a>
+          </li>
+          <li>
+            <a (click)="gotoPublish()">PUBLISH ICO</a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+<!-- NAVBAR END -->

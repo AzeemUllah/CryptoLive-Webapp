@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CryptoSite</title>
+  <base href="/">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cryptolive</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="assets/css/stacktable.css">
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style-main.css">
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,800" rel="stylesheet">
+
+</head>
+<body>
+  <app-root></app-root>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://code.highcharts.com/stock/highstock.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+  <script src="assets/js/stacktable.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script>
+
+    var graph;
+    var previousURL;
+
+    function coinDetailsGraph(){
+      var path = ((window.location.pathname).substr(0,13)).toString();
+
+      if(path == '/coin-details'){
+        var newDataVolume = [[0,0,0,0,0,0,0]];
+        var newDataPrice = [[0,0,0,0,0,0,0]];
+
+        $.getJSON( "https://min-api.cryptocompare.com/data/histoday?fsym="+((window.location.pathname).substr(14,16)).toString()+"&tsym=USD&limit=20000", function( data ) {
+
+          for (var i = 0; i < data['Data'].length; i++){
+            var obj = data['Data'][i];
+
+            newDataPrice[i] = [];
+            var valueTime = obj['time']*1000;
+            newDataPrice[i].push(valueTime);
+
+            var valueClose = obj['close'];
+            newDataPrice[i].push(valueClose);
+
+            newDataVolume[i] = [];
+            var valueTime = obj['time']*1000;
+            newDataVolume[i].push(valueTime);
+
+            var valueVolumeFrom = obj['volumefrom'];
+            newDataVolume[i].push(valueVolumeFrom);
+            // for (var key in obj){
+            //   var value = obj[key];
+            //   newData[i].push(value);
+            //   //console.log(" \n" + key + ": " + value);
+            // }
+          }
+
+          graph = Highcharts.stockChart('container', {
+            rangeSelector: {
+              selected: 1
+            },
+            title: {
+              text: ((window.location.pathname).substr(14,16)) + ' Price and Volume'
+            },
+            yAxis: [{
+              startOnTick: false,
+              endOnTick: false,
+              labels: {
+                align: 'right',
+                x: -3
+              },
+              title: {
+                text: 'Price'
+              },
+              height: '60%',
+              lineWidth: 2,
+              resize: {
+                enabled: true
+              }
+            }, {
+              labels: {
+                align: 'right',
+                x: -3
+              },
+              title: {
+                text: 'Volume'
+              },
+              top: '65%',
+              height: '35%',
+              offset: 0,
+              lineWidth: 2
+            }],
+            series: [{
+              name: 'Price',
+              data: newDataPrice,
+              color: '#31f7ff',
+              tooltip: {
+                shared: true,
+                valueDecimals: 2
+              },
+              dataGrouping: {
+                enabled: false
+              }
+            },
+              {
+                name: 'Volume',
+                data: newDataVolume,
+                type: 'column',
+                color: '#ff9a6a',
+                tooltip: {
+                  shared: true,
+                  valueDecimals: 2
+                },
+                yAxis: 1,
+                dataGrouping: {
+                  enabled: false
+                }
+              }]
+          });
+
+          $(".highcharts-credits").css("display","none");
+          $(".highcharts-contextbutton").css("display","none");
+        });
+
+      }
+    }
+
+    (function ($) {
+      $(document).ready(function(){
+
+
+
+
+        $('.table').stacktable();
+
+        $(".navbar").show();
+
+        $(function () {
+          $(window).scroll(function () {
+            if ($(this).scrollTop() > 250) {
+              $(".navbar").fadeOut();
+            } else {
+              $(".navbar").fadeIn();
+            }
+          });
+        });
+
+
+        setInterval(function(){
+          if(!graph) {
+            coinDetailsGraph();
+            }
+
+          var path = ((window.location.pathname).substr(0,13)).toString();
+          if(previousURL != window.location.pathname){
+            previousURL =  window.location.pathname;
+            graph = null;
+          }
+          },2500);
+
+
+      });
+    }(jQuery));
+
+    window.onload = function () {
+
+
+    }
+
+  </script>
+
+
+</body>
+
+
+<script type="text/javascript">
+
+
+</script>
+</html>

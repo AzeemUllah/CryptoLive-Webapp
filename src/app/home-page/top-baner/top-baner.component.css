@@ -1,0 +1,107 @@
+.future-text{
+  text-align: center;
+}
+
+.Future-div1{
+  border-left: 1px solid #d3d3d3;
+}
+
+.Future-div5{
+  border-left: 1px solid #d3d3d3;
+}
+
+
+/*CONTAINER CSS STARTS  azeem*/
+
+.iconButtonDiv{
+  border-radius: 10px;
+  color: black;
+  background-color: white;
+  padding-bottom: 30px;
+}
+
+#h3Text{
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.btn-lightBlue{
+  color: #ffffff;
+
+  border-radius: 0px;
+  height: 42px;
+  text-align: center;
+  width: 271px;
+  margin-left: 40px;
+  background-color: #0097A7;
+  margin-bottom: 20px;
+}
+
+.btn-primary{
+  color: #ffffff;
+  border-radius: 0px;
+  height: 42px;
+  text-align: center;
+  width: 271px;
+  margin-left: 40px;
+  background-color: #4266b2;
+  margin-bottom: 20px;
+}
+
+.btn-google{
+  color: #ffffff;
+  border-radius: 0px;
+  height: 42px;
+  text-align: center;
+  width: 271px;
+  margin-left: 40px;
+  background-color: #e3463d;
+  margin-bottom: 20px;
+}
+
+.btn-twitter{
+  color: #ffffff;
+  border-radius: 0px;
+  height: 42px;
+  text-align: center;
+  width: 271px;
+  margin-left: 40px;
+  background-color: #1fa0f3;
+  margin-bottom: 20px;
+}
+
+.fa{
+  font-size: 1.5em;
+  padding-right: 10px;
+}
+
+.futureIcoDiv{
+  margin-left: 38px;
+  color: black;
+  background-color: #ffffff;
+}
+
+.imgdiv {
+  width: 118%;
+  height: auto;
+  margin-right: 5px;
+  margin-left: -15px;
+}
+
+.h4Head{
+  font-size: 1.2em;
+  font-weight: 900;
+  margin-bottom: 0px;
+}
+
+
+.jumbotron .divPara{
+  font-size: 0.9em;
+}
+
+.clock{
+  padding-bottom: 19px;
+  color: black;
+}
+/*CONTAINER CSS  azeem END  */

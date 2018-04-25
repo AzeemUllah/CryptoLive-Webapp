@@ -41,6 +41,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PublishIcoComponent } from './ico/publish-ico/publish-ico.component';
 import { AboutComponent } from './about/about/about.component';
 import {ChartsModule} from "ng2-charts";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 export class CustomOption extends ToastOptions {
   animate = 'flyRight'; // you can override any options available
@@ -84,6 +85,8 @@ export class CustomOption extends ToastOptions {
     ToastModule.forRoot(),
     FormsModule,
     HttpClientModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     RouterModule.forRoot([
         { path: '', component: HomePageComponent},
         { path: 'coin-details/:symbol', component: CoinDetailsComponent},

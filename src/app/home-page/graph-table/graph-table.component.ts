@@ -3,6 +3,7 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
 import {HttpClient} from '@angular/common/http';
+import * as $ from "jquery";
 
 
 
@@ -19,6 +20,11 @@ export class GraphTableComponent implements OnInit {
   currentPage: number = 1;
   currentStartValue: number = 1;
   currentEndValue: number = 10;
+
+  pagination: boolean = true;
+
+  isSearching: boolean = false;
+
 
   sampleLineChartData: Array<any> = [
      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -59,18 +65,65 @@ export class GraphTableComponent implements OnInit {
  //  ];
 
 
+  filterString:string = '';
+
   constructor(private db: AngularFireDatabase, public router: Router, private http: HttpClient) { }
 
   ngOnInit() {
     this.getData();
     //this.uplaodCoinDataFromApi();
-    // this.uplaodIcoDataFromApi();
+    //this.uplaodIcoDataFromApi();
+
+    $( "#srch-term" ).keyup(() => {
+        console.log($("#srch-term").val());
+
+        this.filterString = $("#srch-term").val();
+
+        if(this.filterString != "") {
+          this.isSearching = true;
+          setTimeout(()=>{
+            this.pagination = false;
+            var firstCapital = this.filterString.charAt(0).toUpperCase() + this.filterString.slice(1);
+            var count = 0;
+            var coinRef = firebase.database().ref('/CryptoCurrency/coin').orderByChild('name').startAt(firstCapital).limitToFirst(20).on("value", (snapshot) => {
+              if (count < 10) {
+                this.coinsList = [];
+                this.coinsListId = [];
+                var count_graphdata = 0;
+                for (var key in snapshot.val()) {
+                  firebase.database().ref('/CryptoCurrency/coin/' + key).once('value', snapshot2 => {
+                    this.coinsList.push(snapshot2.val());
+                    this.coinsListId.push(key);
+                    this.sampleLineChartData[count_graphdata] = [];
+                    this.getGraphData(snapshot2.val()['symbol'], count_graphdata);
+                    count_graphdata++;
+                    if(snapshot.numChildren() == count_graphdata){
+                      this.isSearching = false;
+                    }
+                  });
+                }
+              }
+            });
+          },2000);
+        }else{
+          this.isSearching = false;
+          this.pagination = true;
+          this.getData();
+        }
+
+
+
+
+    });
 
 
     setInterval(()=>{
       this.lineChartData = this.sampleLineChartData;
       this.lineChartData = this.lineChartData.slice();
     },5000);
+
+
+
 
   }
 
@@ -189,10 +242,13 @@ export class GraphTableComponent implements OnInit {
     this.currentEndValue = this.currentPage * 10;
     this.currentStartValue = this.currentEndValue - 9;
 
-    var coinRef = firebase.database().ref('/CryptoCurrency/coin').orderByChild("rank").startAt(this.currentStartValue).endAt(this.currentEndValue);
+
+
+    var coinRef = firebase.database().ref('/CryptoCurrency/coin').orderByChild("rank").startAt(this.currentStartValue).endAt(this.currentEndValue).limitToFirst(150);
     coinRef.once('value', snapshot => {
       this.coinsList = [];
       this.coinsListId = [];
+      console.log(snapshot.numChildren());
       var count_graphdata  = 0;
       for (var key in snapshot.val()) {
         firebase.database().ref('/CryptoCurrency/coin/'+key).once('value', snapshot2 => {
@@ -202,9 +258,12 @@ export class GraphTableComponent implements OnInit {
           this.getGraphData(snapshot2.val()['symbol'],count_graphdata);
           count_graphdata++;
         });
-
       }
     });
+
+
+
+
   }
 
   getGraphData(symbol,i){
@@ -277,7 +336,7 @@ export class GraphTableComponent implements OnInit {
             "timezone" : data["ico"]["live"][key].timezone,
             "website_link" : data["ico"]["live"][key].website_link,
 
-             "status" : "live",
+            "status" : "live",
 
             "video_url": '',
             "faccebook_url": '',
@@ -290,7 +349,7 @@ export class GraphTableComponent implements OnInit {
             "live" : "1",
             "featured": "0",
             "goal": "999",
-             "approved": "0",
+            "approved": "1",
             "token": "pending",
             "price": "pending",
             "bounty": "pending",

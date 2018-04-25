@@ -12,6 +12,8 @@ import * as $ from 'jquery';
 })
 export class IcoDetailsVideoSectionComponent implements OnInit {
 
+  videoAvaliable: boolean = false;
+
   id: string = '';
   icoDetails: any = {
     video_url: '',
@@ -42,7 +44,13 @@ export class IcoDetailsVideoSectionComponent implements OnInit {
     var coinRef = firebase.database().ref('/ICO/All ICO/allico/'+this.id);
     coinRef.on('value', snapshot => {
       this.icoDetails = snapshot.val();
-      this.loadIframe("videoFrame",this.icoDetails.video_url);
+      if(this.icoDetails.video_url) {
+        this.loadIframe("videoFrame", this.icoDetails.video_url);
+        this.videoAvaliable = true;
+      }
+      else{
+        this.videoAvaliable = false;
+      }
     });
   }
 

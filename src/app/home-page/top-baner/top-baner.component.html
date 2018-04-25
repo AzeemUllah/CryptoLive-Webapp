@@ -13,13 +13,13 @@
 
     <div class="row">
       <div class="col-md-8">
-        <h3> Invest Smarter With CoinMarketcap.</h3>
-        <h3> ICOs Ratings From Top Investors and Experts.
+        <h3 class="animated fadeInRight"> Invest Smarter With ICONOX360.</h3>
+        <h3 class="animated fadeInRight" style="animation-delay: 0.7s;"> ICOs Ratings From Top Investors and Experts.
         </h3>
-        <a class="btn btn-default" (click)="gotoMarket()" role="button">MARKET</a>
-        <a class="btn btn-default " (click)="gotoCrypto()"  role="button">ICO</a>
+        <a class="btn btn-default animated fadeIn" style="animation-delay: 0.7s;" (click)="gotoMarket()" role="button">MARKET</a>
+        <a class="btn btn-default animated fadeIn" style="animation-delay: 0.7s;" (click)="gotoCrypto()"  role="button">ICO</a>
       </div>
-      <div *ngIf="bit=='0'" class="col-md-4 iconButtonDiv">
+      <div *ngIf="bit=='0'" class="col-md-4 iconButtonDiv animated fadeIn" style="animation-delay: 0.9s;">
 
         <div >
           <h3 id="h3Text">Create a free account</h3>
@@ -55,7 +55,7 @@
                   <button (click)="facebookAuthSignup()" type="button" classnamename="btn btn-primary" style="color: rgb(255, 255, 255); text-align: center; height: 35px; margin-right: 30px; margin-bottom: 20px; width: 200px; margin-left: 40px; background-color: rgb(48, 63, 159);"><i class="fa fa-facebook " aria-hidden="true" style="margin-right: 10px;"></i>Login With Facebook</button></div>
               </div>
               <div class="form-group">
-                <div class="col-md-12 control">
+                <div class="col-md-12col-md-2 Future-div1 control">
                   <div style="border-top: 1px solid rgb(136, 136, 136); padding-top: 15px; font-size: 85%;">Don't have an account!<a href="#" style="padding-left: 5px;">Sign Up Here</a></div>
                 </div>
               </div>
@@ -75,10 +75,16 @@
   <div *ngIf="feturedList.length>0" class=" " style="color: white;  width:110%;  display: inline-block;">
     <h3 style=""> Feature ICO</h3>
 
-    <div class="">
-      <div *ngFor="let featuredIco of feturedList; let i = index" (click)="gotoIco(i)" class="col-md-2 Future-div1" style="    width: auto;">
-        <img class="img-responsive" src="{{featuredIco.image}}" alt="">
-        <p class="future-text">{{featuredIco.name}}</p>
+    <div class="featureContainer animated fadeIn">
+      <div *ngFor="let featuredIco of feturedList; let i = index" (click)="gotoIco(i)" class="col-md-2 " style=" ">
+        <div *ngIf="i != 0" class="Future-div1">
+          <img class="img-responsive" src="{{featuredIco.image}}" style="margin-left: 10%;" alt="">
+          <p class="future-text" style="margin-left: 10%;  margin-top: 6px;      width: 100%; font-size: 12px;">{{(featuredIco.description).substr(0,45)}}...</p>
+        </div>
+        <div *ngIf="i == 0" class="">
+          <img class="img-responsive" src="{{featuredIco.image}}" style="margin-left: 10%;" alt="">
+          <p class="future-text" style="margin-left: 10%;   margin-top: 6px;  font-size: 12px;     width: 100%;">{{(featuredIco.description).substr(0,45)}}...</p>
+        </div>
       </div>
     </div>
   </div>

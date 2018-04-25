@@ -18,20 +18,34 @@
 
           <div id="login" class="modal fade" role="dialog">
             <div class="modal-dialog">
+
+
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 style="text-align: center;" class="modal-title">Login</h4>
                 </div>
                 <div class="modal-body">
-                  <form style="text-align: center;" id="loginform" class="form-horizontal" role="form" method="post">
+
+
+
+                  <div class="showbox"  *ngIf="loginInProcess">
+                    <div class="loader">
+                      <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                      </svg>
+                    </div>
+                  </div>
+
+
+                  <form *ngIf="!loginInProcess" style="text-align: center;" id="loginform" class="form-horizontal" role="form" method="post">
                     <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i>
-                      </span><input type="email" [(ngModel)]="loginUserEmail" name="loginUserEmail" class="form-control" value="" placeholder="User Email"  required="" style="width: 200px;">
+                      </span><input type="email" [(ngModel)]="loginUserEmail" name="loginUserEmail" class="form-control popupInput" value="" placeholder="User Email"  required="" style="width: 200px;">
                     </div>
                     <div class="input-group col-md-offset-4" style="margin-bottom: 25px;">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i>
-                      </span><input type="password" class="form-control" value="" placeholder="password"  [(ngModel)]="loginUserPassword" name="loginUserPassword"  required="" style="width: 200px;">
+                      </span><input type="password" class="form-control popupInput" value="" placeholder="password"  [(ngModel)]="loginUserPassword" name="loginUserPassword"  required="" style="width: 200px;">
                     </div>
                     <!--<div class="input-group " style="width:100%;">-->
                     <!--<div class="checkbox"><label><input type="checkbox" id="login-remember" name="remember" value="1"> Remember me</label></div>-->
@@ -45,12 +59,19 @@
                     </div>
                     <div class="form-group">
                       <div class="col-md-12 control">
-                        <div style="border-top: 1px solid rgb(136, 136, 136); padding-top: 15px; font-size: 85%;">Don't have an account!<a href="#" style="padding-left: 5px;">Sign Up Here</a></div>
+                        <div style="border-top: 1px solid rgb(136, 136, 136); padding-top: 15px; font-size: 85%;">Don't have an account!<a data-toggle="modal" data-target="#signup" (click)="openSignup()" style="padding-left: 5px;">Sign Up Here</a></div>
                       </div>
                     </div>
                   </form>
+
+
+
+
                 </div>
               </div>
+
+
+
             </div>
           </div>
 
@@ -62,22 +83,42 @@
                   <h4 style="text-align: center;" class="modal-title">Signup</h4>
                 </div>
                 <div class="modal-body">
-                  <form style="text-align: center;" id="2" class="form-horizontal" role="form" method="post">
-                    <div   class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="email" class="form-control" value="" placeholder="User Email" [(ngModel)]="signupUserEmail" name="signupUserEmail" required="" style="width: 200px;"></div>
-                    <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span><input type="password" class="form-control" value="" placeholder="password" [(ngModel)]="signupUserPassword" name="signupUserPassword"  required="" style="width: 200px;"></div>
+
+                  <div class="showbox"  *ngIf="signupInProgress">
+                    <div class="loader">
+                      <svg class="circular" viewBox="25 25 50 50">
+                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                      </svg>
+                    </div>
+                  </div>
+
+
+                  <form *ngIf="!signupInProgress" style="text-align: center;" id="2" class="form-horizontal" role="form" method="post">
+                    <!--<label for="files">Select Profile Pic</label>  <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;"><input id="files" style="width: 100%;" type="file"  (change)="uploadFile($event)" class="fileInput"></div>-->
+                    <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="fa fa-address-card-o"></i></span><input type="firstName" class="form-control popupInput" value="" placeholder="First Name" [(ngModel)]="firstName" name="firstName" required="" style="width: 200px;"></div>
+                    <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="fa fa-address-card-o"></i></span><input type="lastName" class="form-control popupInput" value="" placeholder="Last Name" [(ngModel)]="lastName" name="lastName" required="" style="width: 200px;"></div>
+
+                    <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input type="email" class="form-control popupInput" value="" placeholder="User Email" [(ngModel)]="signupUserEmail" name="signupUserEmail" required="" style="width: 200px;"></div>
+                    <div  class="input-group col-md-offset-4" style="margin-bottom: 25px;"><span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span><input type="password" class="form-control popupInput" value="" placeholder="password" [(ngModel)]="signupUserPassword" name="signupUserPassword"  required="" style="width: 200px;"></div>
+
+                    <div  class="input-group col-md-offset-4 popupFileUpload" style="    margin-bottom: 5%;">
+                      <div class="form-group">
+                        <label for="exampleFormControlFile1">Profile Picture</label>
+                        <input type="file" style="    margin-left: 17%;" id="signupProfileImage" (change)="uploadFile($event)" class="form-control-file" id="exampleFormControlFile1">
+                      </div>
+                    </div>
                     <!--<div class="input-group " style="width:100%;">-->
                     <!--<div class="checkbox"><label><input type="checkbox" id="" name="remember" value="1"> Remember me</label></div>-->
                     <!--</div>-->
                     <div class="form-group" style="margin-top: 10px;">
                       <div class="col-sm-12 controls"><button (click)="register()" type="button" class="btn btn-primary" style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px; text-align: center; width: 200px; background-color: rgb(0, 151, 167); border-radius: 1px;">Submit</button>
-                        <button (click)="facebookAuthSignup()" type="button" classnamename="btn btn-primary" style="color: rgb(255, 255, 255); text-align: center; height: 35px; margin-right: 30px; margin-bottom: 20px; width: 200px; margin-left: 40px; background-color: rgb(48, 63, 159);"><i class="fa fa-facebook " aria-hidden="true" style="margin-right: 10px;"></i>Login With Facebook</button></div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-md-12 control">
-                        <div style="border-top: 1px solid rgb(136, 136, 136); padding-top: 15px; font-size: 85%;">Don't have an account!<a href="#" style="padding-left: 5px;">Sign Up Here</a></div>
+                        <button (click)="facebookAuthSignup()" type="button" classnamename="btn btn-primary" style="color: rgb(255, 255, 255); text-align: center; height: 35px; margin-right: 30px; margin-bottom: 20px; width: 200px; margin-left: 40px; background-color: rgb(48, 63, 159);"><i class="fa fa-facebook " aria-hidden="true" style="margin-right: 10px;"></i>Login With Facebook</button>
                       </div>
                     </div>
                   </form>
+
+
+
                 </div>
 
               </div>
@@ -101,7 +142,7 @@
       <div class="navbar-header">
 
         <!-- Making the collapse navigation for mobile viewport -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button id="navbartoggleThreeBars" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle Navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -112,7 +153,7 @@
 
         <a class="navbar-brand" (click)="gotoMarket()">
           <div class="logo">
-            <img src="assets/img/logo.png" />
+            <img style="width: 40%;margin-top: -5px;" src="data:image/png;base64,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" class="logo">
           </div>
         </a>
 
@@ -130,7 +171,7 @@
             <a (click)="gotoCrypto()">ICOs</a>
           </li>
           <li>
-            <a (click)="gotoAbout()">ABOUT CRYPTOLIVE</a>
+            <a (click)="gotoAbout()">ABOUT ICONIX360</a>
           </li>
           <li>
             <a (click)="gotoPublish()">PUBLISH ICO</a>

@@ -1,0 +1,30 @@
+@media only screen and (max-width: 600px) {
+  .marketcap{
+    display: none;
+  }
+
+  .volume24h{
+    display: none;
+  }
+
+  .circulating{
+    display: none;
+  }
+
+  .weekly{
+    display: none;
+  }
+
+  .hour1{
+    width: 20% !important;
+  }
+
+  #coinsListTable{
+    width: 90%;
+    margin-left: 3%;
+  }
+  
+  body{
+    overflow-x: hidden;
+  }
+}

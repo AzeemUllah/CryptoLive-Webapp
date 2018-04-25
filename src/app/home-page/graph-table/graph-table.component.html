@@ -1,21 +1,27 @@
 <!-- GRAPH TABLE STARTS-->
-
-<section id="graph-table">
+<div class="showbox"  *ngIf="isSearching || coinsList.length == 0">
+  <div class="loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+</div>
+<section id="graph-table" *ngIf="coinsList.length !=0 && isSearching == false">
   <div class="container">
     <div class= "row">
 
-        <table class="table">
+        <table class="table" id="coinsListTable">
 
           <thead>
           <tr>
             <th> NAME</th>
-            <th>PRICE</th>
-            <th>MARKETCAP</th>
-            <th>VOLUME (24H)</th>
-            <th>CIRCULATING</th>
-            <th>1h</th>
-            <th>24h</th>
-            <th>WEEKLY</th>
+            <th class="price">PRICE</th>
+            <th class="marketcap">MARKETCAP</th>
+            <th class="volume24h">VOLUME (24H)</th>
+            <th class="circulating">CIRCULATING</th>
+            <th class="1h">1h</th>
+            <th class="24h">24h</th>
+            <th class="weekly">WEEKLY</th>
           </tr>
           </thead>
           <tbody>
@@ -23,53 +29,41 @@
           <tr *ngFor="let coin of coinsList; let i = index" (click)="gotoCoinDetails(coin.symbol)" >
             <td class="td-border" width="10%">
               <div class="pull-left cryptocur-icon" style="padding-top: 2px; width:28%">
-                <img src="{{coin.image_url}}" style="width: 100%; height: auto;" alt="logo">
+                <img class="coin-logo" src="{{coin.image_url}}" style="width: 100%; height: auto;" alt="logo">
               </div>
 
-              <div class="pull-left" style="width: 5%;padding-left: 10px;">
+              <div class="pull-left coin-details-name" style="width: 5%;padding-left: 10px;">
                 <p>{{coin.name}}</p>
                 <p class="abbr-p">{{coin.symbol}}</p>
               </div>
 
             </td>
-
-            <td *ngIf="coin.percent_change_1h > 0"  class="graph-td" align="center;" style="color: #2e7d32;">$ {{addCommas(coin.price_usd)}}
+            <td *ngIf="coin.percent_change_1h > 0"  class="graph-td price" align="center;" style="color: #2e7d32;">$ {{addCommas(coin.price_usd)}}
               <i class="fa fa-caret-up" aria-hidden="true" style="padding-left: 5px;"></i>
             </td>
-
-            <td *ngIf="coin.percent_change_1h < 0"  class="graph-td" align="center;" style="color: #c62828;">$ {{addCommas(coin.price_usd)}}
+            <td *ngIf="coin.percent_change_1h < 0"  class="graph-td price" align="center;" style="color: #c62828;">$ {{addCommas(coin.price_usd)}}
               <i class="fa fa-caret-down" aria-hidden="true" style="padding-left: 5px;"></i>
             </td>
-
-
-            <td class="graph-td">$ {{addCommas(coin.market_cap_usd)}}</td>
-            <td class="graph-td" align="center">$ {{addCommas(coin.volume_usd)}}</td>
-            <td class="graph-td" align="center">$ {{addCommas(coin.available_supply)}}</td>
-
-
-
-
-            <td *ngIf="coin.percent_change_1h > 0" style="width: 10%;color: #09c600;" align="center">{{coin.percent_change_1h}}%
+            <td class="graph-td marketcap">$ {{addCommas(coin.market_cap_usd)}}</td>
+            <td class="graph-td volume24h" align="center">$ {{addCommas(coin.volume_usd)}}</td>
+            <td class="graph-td circulating" align="center">$ {{addCommas(coin.available_supply)}}</td>
+            <td class="hour1" *ngIf="coin.percent_change_1h > 0" style="width: 10%;color: #09c600;" align="center">{{coin.percent_change_1h}}%
               <i class="fa fa-caret-up" aria-hidden="true" style="padding-left: 5px;"></i>
             </td>
-            <td *ngIf="coin.percent_change_1h < 0" style="width: 10%;color: #c62828;" align="center">{{coin.percent_change_1h}}%
+            <td class="hour1" *ngIf="coin.percent_change_1h < 0" style="width: 10%;color: #c62828;" align="center">{{coin.percent_change_1h}}%
               <i class="fa fa-caret-down" aria-hidden="true" style="padding-left: 5px;"></i>
             </td>
-
-
-            <td *ngIf="coin.percent_change_24h > 0" style="padding-bottom: 0;" align="center" class="graph-td">
-              <p class="pull-left 24h-val" style="color: #09c600;">{{coin.percent_change_24h}}%
+            <td class="24h" *ngIf="coin.percent_change_24h > 0" style="padding-bottom: 0;" align="center" class="graph-td">
+              <p class=" 24h-val" style="color: #09c600;">{{coin.percent_change_24h}}%
                 <i class="fa fa-caret-up" aria-hidden="true" style="padding-left: 5px;"></i>
               </p>
             </td>
-            <td *ngIf="coin.percent_change_24h < 0" style="padding-bottom: 0;" align="center" class="graph-td">
-              <p class="pull-left 24h-val" style="color: #c62828;">{{coin.percent_change_24h}}%
+            <td class="24h" *ngIf="coin.percent_change_24h < 0" style="padding-bottom: 0;" align="center" class="graph-td">
+              <p class=" 24h-val" style="color: #c62828;">{{coin.percent_change_24h}}%
                 <i class="fa fa-caret-down" aria-hidden="true" style="padding-left: 5px;"></i>
               </p>
             </td>
-
-
-            <td style="width: 15%;" align="center">
+            <td class="weekly" style="width: 15%; " align="center">
               <!--<img src="assets/icons/Lineage.png" alt="logo" class="graph-img">-->
               <!--<p class="graph-p" style= "color: #c62828;">-5.35%-->
                 <!--<img src="assets/icons/down-arrow.png" style="width: 10%" height="10%" alt="logo" img-responsive >-->
@@ -118,9 +112,9 @@
 </section>
 <!-- GRAPH TABLE ENDS -->
 
-<section id="homepage-pagination" style="margin-top: -10px;">
+<section id="homepage-pagination" style="margin-top: -10px;" *ngIf="coinsList.length !=0 && isSearching == false">
 
-  <div class="col-md-12" align="center">
+  <div class="col-md-12" align="center" *ngIf="pagination">
     <ul class="pagination">
       <li><a (click)="changePage(-1)">< Prev</a></li>
       <li><a (click)="changePage(1)" >1</a></li>

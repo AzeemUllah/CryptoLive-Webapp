@@ -2462,7 +2462,7 @@ body {
   }
 
   .rateDiv{
-    margin-top: -98px !important;
+    margin-top: -98px;
     margin-left: 145px !important;
   }
 
@@ -2475,7 +2475,7 @@ body {
   }
 
   .beforeIcon-ratingStar-text {
-    font-size: 0.6em !important;
+    font-size: 0.6em;
     text-align: center;
     color: #9c9c9c;
   }

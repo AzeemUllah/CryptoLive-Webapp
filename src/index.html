@@ -2,25 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>CryptoSite</title>
+  <title>ICONIX360</title>
   <base href="/">
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cryptolive</title>
+  <title>ICONIX360</title>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="assets/css/stacktable.css">
+  <!--<link rel="stylesheet" href="assets/css/stacktable.css">-->
   <link href="assets/css/bootstrap.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style-main.css">
   <!-- FONT AWESOME -->
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="assets/css/animate.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,700,800" rel="stylesheet">
+<style>
+  @media only screen and (max-width: 600px) {
+   .navbar-brand{
+     width: 80%;
+   }
+    .mediaat600{
+      width: 93%;
+    }
+    .coin-logo{
+      width: 160% !important;
+    }
+    .coin-details-name{
+      padding-left:35% !important;
+    }
 
+  }
+  #five-features > .container{
+    display: none;
+  }
+
+  /*@media only screen and (max-width: 800px) {*/
+   /*.stacktable{*/
+     /*display: none !important;*/
+   /*}*/
+    /*.ico-short-details-table{*/
+      /*display: table !important;*/
+    /*}*/
+
+  /*}*/
+
+</style>
 </head>
-<body>
+<body style="overflow-x: hidden;">
   <app-root></app-root>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -29,7 +59,7 @@
   <script src="https://code.highcharts.com/stock/highstock.js"></script>
   <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
   <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-  <script src="assets/js/stacktable.js"></script>
+  <!--<script src="assets/js/stacktable.js"></script>-->
   <script src="assets/js/bootstrap.min.js"></script>
   <script>
 
@@ -144,7 +174,7 @@
 
 
 
-        $('.table').stacktable();
+        // $('.table').stacktable();
 
         $(".navbar").show();
 
@@ -175,10 +205,11 @@
       });
     }(jQuery));
 
-    window.onload = function () {
-
-
-    }
+    // window.onload = function () {
+    //   setInterval(function () {
+    //     $('.ico-short-details-table').stacktable();
+    //   },5000);
+    // }
 
   </script>
 

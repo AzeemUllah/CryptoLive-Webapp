@@ -8,9 +8,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class MiddleCtaComponent implements OnInit {
 
-  globalMarkets: string = '';
-  dominance: string = '';
-  accounts: string = '';
+  globalMarkets: string = '0';
+  dominance: string = '0';
+  accounts: string = '0';
 
   constructor(private http: HttpClient) { }
 

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import * as firebase from 'firebase';
 import {ToastsManager} from 'ng2-toastr';
 import * as $ from 'jquery';
+import {AngularFireStorage} from "angularfire2/storage";
 
 @Component({
   selector: 'app-header',
@@ -18,9 +19,18 @@ export class HeaderComponent implements OnInit {
   loginUserEmail: string = '';
   loginUserPassword: string = '';
 
+  firstName: string = '';
+  lastName: string = '';
+
   bit: string = '0';
 
-  constructor(private db: AngularFireDatabase, public router: Router, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  file: any;
+  imageUrl: string = '';
+
+  loginInProcess: boolean = false;
+  signupInProgress: boolean = false;
+
+  constructor(private db: AngularFireDatabase, public router: Router, public toastr: ToastsManager, vcr: ViewContainerRef,private afStorage: AngularFireStorage) {
     this.toastr.setRootViewContainerRef(vcr);
   }
 
@@ -28,17 +38,36 @@ export class HeaderComponent implements OnInit {
     if(localStorage.getItem("bit")) {
       this.bit = localStorage.getItem("bit");
     }
+
+    $('#fileUpload').on('change',function(){
+      $('.avatar').removeClass('open');
+    });
+    $('.avatar').on('click',function(){
+      $(this).addClass('open');
+    });
+// added code to close the modal if you click outside
+    $('html').click(function() {
+      $('.avatar').removeClass('open');
+    });
+
+    $('.avatar').click(function(event){
+      event.stopPropagation();
+    });
+
   }
 
   login(){
+    this.loginInProcess = true;
     firebase.auth().signInWithEmailAndPassword(this.loginUserEmail, this.loginUserPassword)
       .then(data=>{
+        this.loginInProcess = false;
         this.toastr.success('Login Successful!', 'Success!');
         localStorage.setItem("bit","1");
         this.bit = "1";
         $(".close").click();
       })
       .catch((error) => {
+        this.loginInProcess = false;
         var errorMessage = error.message;
         this.toastr.error(errorMessage, 'Error!');
       });
@@ -66,18 +95,39 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < 5; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+  }
+
   register(){
-    firebase.auth().createUserWithEmailAndPassword(this.signupUserEmail, this.signupUserPassword).then((data)=>{
-      firebase.database().ref('/User/Profiles/').push({
-        email: this.signupUserEmail,
-        uid: data.uid,
-        is_allowed: "0"
-      }).then(data => {
-        this.toastr.success("Signup Sucessfull!", 'Sucess!');
-        $(".close").click();
+    this.signupInProgress = true;
+    firebase.storage().ref().child('user-images/'+this.makeid()+'.png').put(this.file).then(snapshot => {
+      this.imageUrl = snapshot.downloadURL;
+      firebase.auth().createUserWithEmailAndPassword(this.signupUserEmail, this.signupUserPassword).then((data)=>{
+        firebase.database().ref('/User/Profiles/').push({
+          email: this.signupUserEmail,
+          uid: data.uid,
+          name: this.firstName + " " + this.lastName,
+          is_allowed: "0",
+          image: this.imageUrl
+        }).then(data => {
+          this.signupInProgress = false;
+          this.toastr.success("Signup Sucessfull!", 'Sucess!');
+          this.firstName = '';
+          this.lastName = '';
+          this.signupUserEmail = '';
+          this.signupUserPassword = '';
+          $("#signupProfileImage").replaceWith( $("#signupProfileImage").val('').clone( true ) );
+          $(".close").click();
+        });
+      }).catch((error) => {
+        this.signupInProgress = false;
+        this.toastr.error(error.message, 'Error!');
       });
-    }).catch((error) => {
-      this.toastr.error(error.message, 'Error!');
     });
   }
 
@@ -126,6 +176,16 @@ export class HeaderComponent implements OnInit {
 
   gotoPublish(){
     this.router.navigate(['ico/publish-ico']);
+  }
+
+  openSignup(){
+    $(".close").click();
+    setTimeout(()=>{$("#signupBtnModalOpen").click();},1000);
+
+  }
+
+  uploadFile(event) {
+    this.file = event.srcElement.files[0];
   }
 
 

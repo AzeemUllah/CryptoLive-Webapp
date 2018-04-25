@@ -10,7 +10,7 @@ import * as firebase from 'firebase';
 })
 export class IcoMainPageTablesComponent implements OnInit {
 
-  icoList: any;
+  icoList: any = [];
   icoListId: any;
   icoRatingListConcept: any = [0,0,0,0,0,0,0];
   icoRatingListTeam: any = [0,0,0,0,0,0,0];
@@ -31,7 +31,7 @@ export class IcoMainPageTablesComponent implements OnInit {
   }
 
   getData(){
-    var coinRef = firebase.database().ref('/ICO/All ICO/allico/').orderByChild("count").startAt(this.currentStartValue).endAt(this.currentEndValue);
+    var coinRef = firebase.database().ref('/ICO/All ICO/allico/').orderByChild("approved").equalTo("1").limitToFirst(5);
     coinRef.on('value', snapshot => {
       this.icoList = [];
       this.icoListId = [];

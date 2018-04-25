@@ -33,7 +33,7 @@
                   <p>Lorem ipsum dolor sit amet, consertetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore et dolore magna aliqua.</p>
                 </div>
                 <div class="col-md-5">
-                  <p><span class="bold">Estimated approval:</span> January 27(3 day left)</p>
+                  <p><span class="bold">Estimated approval:</span> {{getEstimatedTime()}} (3 day left)</p>
                 </div>
                 <div class="col-md-12">
                   <div class="progress">
@@ -44,7 +44,17 @@
             </div>
           </div>
           <div class="col-md-12 right-form">
-            <div class="col-md-12">
+            <div class="showbox"  *ngIf="isSaving">
+              <div class="loader">
+                <svg class="circular" viewBox="25 25 50 50">
+                  <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                </svg>
+              </div>
+            </div>
+
+
+
+            <div class="col-md-12" *ngIf="!isSaving">
               <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation"  id="homeLink" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="false">ICO APPLICATION DETAIL</a></li>
                 <li role="presentation" id="profileLink" class=""><a href="#profile" aria-controls="profile"  role="tab" data-toggle="tab" aria-expanded="false">ICO DETAIL</a></li>
@@ -55,20 +65,30 @@
                   <div class="form-data">
                     <div class="col-md-6 form"><label for="name">WEBSITE URL</label><input type="name" name="websiteUrl" [(ngModel)]="websiteUrl" class="form-control" value=""></div>
                     <div class="col-md-6 form"><label for="lastname">ABOUT</label><input type="name" name="about" [(ngModel)]="about" class="form-control" value=""></div>
-                    <div class="col-md-6 form"><label for="inputEmail">SOCIAL MEDIA LINKS</label><input type="name" name="socialMediaLinks" [(ngModel)]="socialMediaLinks" class="form-control" value="" required=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">SOCIAL MEDIA LINKS</label><br><button data-toggle="modal" data-target="#socialMediaLinks"  type="button" class="btn btn-primary socialMediaLinksButton">Add links</button></div>
                     <div class="col-md-6 form"><label for="inputEmail">COUNTRY OF OPERATION</label><input type="name" name="country" [(ngModel)]="country"  class="form-control" value="" required=""></div>
-                    <div class="col-md-6 form"><label for="inputEmail">(pre)ICO START DATE</label><input type="name" name="startDate" [(ngModel)]="startDate"  class="form-control" value=""></div>
-                    <div class="col-md-6 form"><label for="inputEmail">ICO END DATE</label><input type="name" name="endDate" [(ngModel)]="endDate" class="form-control" value=""></div>
+                    <div class="col-md-6 form"><label for="inputEmail">(pre)ICO START DATE</label><input type="name" name="startDate" [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [(ngModel)]="startDate"  class="form-control" value=""></div>
+
+                    <!--<input [(ngModel)]="startDate"  placeholder="Start Time">-->
+                    <owl-date-time #dt1></owl-date-time>
+
+
+                    <div class="col-md-6 form"><label for="inputEmail">ICO END DATE</label><input type="name" name="endDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" [(ngModel)]="endDate" class="form-control" value=""></div>
+                    <!--<input [(ngModel)]="startDate" [owlDateTime]="dt2" [owlDateTimeTrigger]="dt2" placeholder="End Time">-->
+                    <owl-date-time #dt2></owl-date-time>
+
+
+
                     <div class="col-md-6 form"><label for="inputEmail">LINK TO WHITEPAPER</label><input type="name" name="whitepaper" [(ngModel)]="whitepaper" class="form-control" value=""></div>
                     <div class="col-md-6 form"><label for="inputEmail">LINK TO ICO WATCHLIST</label><input type="name" name="watchlist" [(ngModel)]="watchlist"  class="form-control"></div>
                     <div class="col-md-12">
-                      <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about cryptolive. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
+                      <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about ICONIX360. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
                     </div>
                     <div class="col-md-12">
                       <div class="row">
                         <div class="col-md-2 col-xs-6"></div>
                         <div class="col-md-7 disclaimer-form" align="right">
-                          <p>By Submitting this application you agree to<a style="color: rgb(77, 182, 172);">cryptolive T&amp;C</a></p>
+                          <p>By Submitting this application you agree to<a style="color: rgb(77, 182, 172);"> ICONIX360 T&amp;C</a></p>
                         </div>
                         <div class="col-md-2 col-xs-6" align="right"><button (click)="next(1)"  type="button" class="btn btn-primary">NEXT</button></div>
                       </div>
@@ -86,7 +106,7 @@
                     <div class="col-md-6 form"><label for="inputEmail">DESCRIPTION</label><input type="email" class="form-control"  name="description" [(ngModel)]="description" value=""></div>
                     <div class="col-md-12 "><input type="checkbox"  name="emailPreferance" [(ngModel)]="emailPreferance" value="on" style="width: 30px; height: 20px;"><label>I PREFER EMAIL OVER PHONE CALLS</label></div>
                     <div class="col-md-12">
-                      <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about cryptolive. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
+                      <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about ICONIX360. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
                     </div>
                     <div class="col-md-12">
                       <div class="row">
@@ -136,13 +156,13 @@
                         <div class="checkbox"><label><input type="checkbox" [(ngModel)]="virtualReality" name="virtualReality" value="on">Virtual Reality</label></div>
                       </div>
                       <div class="col-md-12">
-                        <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about cryptolive. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
+                        <p>By clicking "Next" I agree to be contaicted at the number provided with more information or offers about ICONIX360. I understand these calls or texts may use computer-assisted dailing or pre-recorded</p>
                       </div>
                       <div class="col-md-12">
                         <div class="row">
                           <div class="col-md-2 col-xs-6"><button type="button" class="btn btn-default" (click)="goBack(3)">PREVIOUS</button></div>
                           <div style="text-align: center;" class="col-md-7 disclaimer-form" >
-                            <p>By Submitting this application you agree to<a style="color: rgb(77, 182, 172); margin-left: 1px;"> cryptolive T&amp;C</a></p>
+                            <p>By Submitting this application you agree to<a style="color: rgb(77, 182, 172); margin-left: 1px;"> ICONIX360 T&amp;C</a></p>
                           </div>
                           <div class="col-md-2 col-xs-6" align="right"><button (click)="next(3)"  type="button" class="btn btn-primary">FINISH</button></div>
                         </div>
@@ -157,4 +177,41 @@
       </div>
     </div>
   </div>
+
+  <div id="socialMediaLinks" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" style="height: 45vh;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 style="text-align: center;" class="modal-title">Social Media Links</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-data">
+            <div style="    margin-bottom: 5%;" class="col-md-6 form"><label for="name">FACEBOOK</label><input type="name" name="bounty" [(ngModel)]="facebook"  class="form-control" value=""></div>
+            <div style="    margin-bottom: 5%;" class="col-md-6 form"><label for="lastname">TWITTER</label><input type="name" name="token" [(ngModel)]="twitter"  class="form-control" value=""></div>
+            <div style="    margin-bottom: 5%;" class="col-md-6 form"><label for="lastname">GITHUB</label><input type="name" name="token" [(ngModel)]="github"  class="form-control" value=""></div>
+            <div style="    margin-bottom: 5%;" class="col-md-6 form"><label for="lastname">REDDIT</label><input type="name" name="token" [(ngModel)]="reddit"  class="form-control" value=""></div>
+            <div style="    margin-bottom: 5%;" class="col-md-6 form"><label for="lastname">MEDIUM</label><input type="name" name="token" [(ngModel)]="medium"  class="form-control" value=""></div>
+            <div style="    margin-bottom: 5%;" class="col-md-6 form"><label for="lastname">PAPER PLANE</label><input type="name" name="token" [(ngModel)]="paperPlane"  class="form-control" value=""></div>
+
+          <div class="col-md-12" style="text-align: center;">
+            <button data-dismiss="modal" type="button" class="btn btn-primary socialMediaLinksButton">Add links</button>
+          </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="search-overlay" class="block">
+    <div class="centered">
+      <div id='search-box'>
+        <h4>You need to be logged in; in order to publish ICO!</h4>
+      </div>
+    </div>
+  </div>
+
+
 </section>

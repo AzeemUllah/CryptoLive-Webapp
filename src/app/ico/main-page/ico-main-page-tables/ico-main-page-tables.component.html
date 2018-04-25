@@ -1,5 +1,15 @@
 <!-- two-table section start -->
-<section id="two-tables" class="animated">
+
+<div class="showbox" *ngIf="icoList.length == 0">
+  <div class="loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+</div>
+
+
+<section id="two-tables" class="animated" *ngIf="icoList.length != 0">
   <div class="container">
     <div class="row">
 
@@ -7,39 +17,38 @@
         <h4>TRENDING</h4>
 
         <a >
-          <table class="table" >
+          <table class="table ico-tables" >
             <thead class="table-head">
             <tr >
-              <th style="    width: 28%;">NAME</th>
-              <th>ETA</th>
-              <th>TEAM</th>
-              <th>CONCEPT</th>
-              <th>WHITE</th>
-              <th>SOCIAL</th>
+              <th style="    width: 28%;" class="table1-name">NAME</th>
+              <th class="table1-eta">ETA</th>
+              <th class="table1-team">TEAM</th>
+              <th class="table1-concept">CONCEPT</th>
+              <th class="table1-white">WHITE</th>
+              <th class="table1-social">SOCIAL</th>
             </tr>
             </thead>
             <tbody align="center">
             <tr *ngFor="let ico of icoList; let i = index" (click)="gotoIcoDetails(i)">
               <p style="display: none;">{{i+1}}</p>
-              <td>
-                <div class="pull-left" style="padding-top: 2px; width: 40%;">
+              <td class="table1-name">
+
+                <div class="pull-left table1-name-logo" style="padding-top: 2px; width: 40%;">
                   <img src="{{ico.image}}" style="width: 100%;     margin-top: 10%;" alt="logo">
                 </div>
 
-                <div class="pull-left" style=" width: 60%;padding-top: 5px;padding-left: 10px;">
+                <div class="pull-left table1-name-iconame" style=" width: 60%;padding-top: 5px;padding-left: 10px;">
                   <p>{{ico.name}}</p>
                 </div>
 
                 <!-- <img src="icons/Bitmap.png" alt="logo" class=" image-responsive table-img" >
                 <p class="col-md-offset-3 " style="padding-left: 10px;">WEPOWER</p> -->
               </td>
-              <td class="red">8h</td>
-              <td>{{(icoRatingListTeam[i]/(icoRatingListTotalCount[i]-1)).toFixed(1)}}</td>
-              <td>{{(icoRatingListConcept[i]/(icoRatingListTotalCount[i]-1)).toFixed(1)}}</td>
-
-
-              <td class="green">{{(icoRatingListWhitepaper[i]/(icoRatingListTotalCount[i]-1)).toFixed(1)}}</td>
-              <td>
+              <td class="red table1-eta">8h</td>
+              <td class="table1-team">{{(icoRatingListTeam[i]/(icoRatingListTotalCount[i]-1)).toFixed(1)}}</td>
+              <td class="table1-concept">{{(icoRatingListConcept[i]/(icoRatingListTotalCount[i]-1)).toFixed(1)}}</td>
+              <td class="green table1-white">{{(icoRatingListWhitepaper[i]/(icoRatingListTotalCount[i]-1)).toFixed(1)}}</td>
+              <td class="table1-social">
                 <i class="fa fa-facebook favicon-icons" aria-hidden="true"></i>
                 <i class="fa fa-twitter favicon-icons" aria-hidden="true"></i>
 
@@ -63,32 +72,32 @@
       <div class="col-md-5 right-table">
         <h4 class="grey-color">LAST MINUTE</h4>
         <a >
-          <table class="table">
+          <table class="table ico-tables">
             <thead align="center">
             <tr>
-              <th class="col-md-3" width="28%;">NAME</th>
-              <th class="col-md-3">ETA</th>
-              <th class="col-md-3">OVERALL</th>
-              <th class="col-md-3">SOCIAL</th>
+              <th class="col-md-3 table2-name" style="width: 40%;" >NAME</th>
+              <th class="col-md-3 table2-eta" style="width: 15%;">ETA</th>
+              <th class="col-md-3 table2-overall" style="width: 15%;">OVERALL</th>
+              <th class="col-md-3 table2-social" style="width: 15%;">SOCIAL</th>
             </tr>
             </thead>
             <tbody align="center">
             <tr *ngFor="let ico of icoList; let i = index" (click)="gotoIcoDetails(i)" class="table-row">
               <p style="display: none;">{{i+1}}</p>
-              <td>
-                <div class="pull-left " style="padding-top: 2px; width:40%;">
-                  <img src="{{ico.image}}" style=" width: 100%" alt="logo">
+              <td class="table2-name">
+                <div class="pull-left table2-name-logo" style="padding-top: 2px; width:40%;">
+                  <img src="{{ico.image}}" style=" margin-top: 10%; width: 100%" alt="logo">
                 </div>
 
-                <div class="pull-left" style=" width: 60%;padding-top: 5px;padding-left: 5px;  ">
+                <div class="pull-left table2-name-iconame" style=" width: 60%;padding-top: 5px;padding-left: 5px;  ">
                   <p>{{ico.name}}</p>
                 </div>
                 <!-- <img src="icons/Bitmap.png" class="pull-left image-responsive table-img" alt="logo">
                 <p class="col-md-offset-3" style="padding-left: 5px">REMME</p> -->
               </td>
-              <td class="table-red">10m</td>
-              <td class="table-yellow">{{((icoRatingListConcept[i]+icoRatingListTeam[i]+icoRatingListWhitepaper[i])/((icoRatingListTotalCount[i]-1)*3)).toFixed(1)}}</td>
-              <td>
+              <td class="table-red table2-eta">10m</td>
+              <td class="table-yellow table2-overall">{{((icoRatingListConcept[i]+icoRatingListTeam[i]+icoRatingListWhitepaper[i])/((icoRatingListTotalCount[i]-1)*3)).toFixed(1)}}</td>
+              <td class="table2-social">
                 <i class="fa fa-facebook favicon-icons" aria-hidden="true">
                 </i>
                 <i class="fa fa-twitter favicon-icons" aria-hidden="true"></i>

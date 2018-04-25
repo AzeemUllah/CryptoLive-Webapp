@@ -45,10 +45,12 @@ export class IcoMainPageIcoListingComponent implements OnInit {
         this.icoListId = [];
         for (var key in snapshot.val()) {
           firebase.database().ref('/ICO/All ICO/allico/'+key).on('value', snapshot2 => {
+          if(snapshot2.val().approved == "1") {
             this.icoList.push(snapshot2.val());
             this.icoListId.push(key);
-            this.getRatingConcept(key,this.ratingCounter);
+            this.getRatingConcept(key, this.ratingCounter);
             this.ratingCounter++;
+          }
           });
         }
       });
@@ -61,10 +63,10 @@ export class IcoMainPageIcoListingComponent implements OnInit {
       $("#two-tables").removeClass("fadeIn");
       $("#planning-ico").removeClass("fadeIn");
 
-      setTimeout(()=>{
+
         $("#planning-ico").css("display", "none");
         $("#two-tables").css("display", "none");
-      },1000);
+
 
 
       var count = 0;
@@ -74,7 +76,7 @@ export class IcoMainPageIcoListingComponent implements OnInit {
         this.icoListId = [];
         for (var key in snapshot.val()) {
           firebase.database().ref('/ICO/All ICO/allico/' + key).on('value', snapshot2 => {
-            if((((snapshot2.val().name).toLowerCase()).match((this.filterString).toLowerCase())) && count < 5){
+            if((((snapshot2.val().name).toLowerCase()).match((this.filterString).toLowerCase())) && count < 5 && snapshot2.val().approved == "1"){
               this.icoList.push(snapshot2.val());
               this.icoListId.push(key);
               count++;

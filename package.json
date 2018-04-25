@@ -27,6 +27,7 @@
     "firebase": "^4.12.1",
     "highcharts": "^6.1.0",
     "jquery": "^3.3.1",
+    "ng-pick-datetime": "^5.2.5",
     "ng2-charts": "^1.6.0",
     "ng2-toastr": "^4.1.2",
     "ngx-editor": "^3.3.0-rc.13",

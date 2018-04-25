@@ -39,79 +39,87 @@ export class IcoDetailsTopHeaderComponent implements OnInit {
       this.id = params.id;
       this.getIcoDetails();
       window.scrollTo(0, 0);
+      this.getRating();
+      setInterval(()=>{
+        this.getRating();
+      },5000)
 
-      var ratingRef = firebase.database().ref('/User/Rating/').orderByChild('icoId').equalTo(this.id);
-      ratingRef.once('value', snapshot => {
-        if (snapshot.val()) {
-          for (var key in snapshot.val()) {
-            firebase.database().ref('/User/Rating/'+key).once('value', snapshot2 => {
-              if(snapshot2.val()['icoId'] == this.id) {
-                this.totalCount++;
-
-                this.totalConcept += parseFloat(snapshot2.val()['Concept']);
-                this.totalTeam += parseFloat(snapshot2.val()['Team']);
-                this.totalWhitepaper += parseFloat(snapshot2.val()['Whitepaper']);
-
-
-
-                if(parseInt(snapshot2.val()['Whitepaper']) == 5){
-                  this.occuranceFive++;
-                }
-                else if(parseInt(snapshot2.val()['Whitepaper']) == 4){
-                  this.occuranceFour++;
-                }
-                else if(parseInt(snapshot2.val()['Whitepaper']) == 3){
-                  this.occuranceThree++;
-                }
-                else if(parseInt(snapshot2.val()['Whitepaper']) == 2){
-                  this.occuranceTwo++;
-                }
-                else if(parseInt(snapshot2.val()['Whitepaper']) == 1){
-                  this.occuranceOne++;
-                }
-
-                if(parseInt(snapshot2.val()['Team']) == 5){
-                  this.occuranceFive++;
-                }
-                else if(parseInt(snapshot2.val()['Team']) == 4){
-                  this.occuranceFour++;
-                }
-                else if(parseInt(snapshot2.val()['Team']) == 3){
-                  this.occuranceThree++;
-                }
-                else if(parseInt(snapshot2.val()['Team']) == 2){
-                  this.occuranceTwo++;
-                }
-                else if(parseInt(snapshot2.val()['Team']) == 1){
-                  this.occuranceOne++;
-                }
-
-
-                if(parseInt(snapshot2.val()['Concept']) == 5){
-                  this.occuranceFive++;
-                }
-                else if(parseInt(snapshot2.val()['Concept']) == 4){
-                  this.occuranceFour++;
-                }
-                else if(parseInt(snapshot2.val()['Concept']) == 3){
-                  this.occuranceThree++;
-                }
-                else if(parseInt(snapshot2.val()['Concept']) == 2){
-                  this.occuranceTwo++;
-                }
-                else if(parseInt(snapshot2.val()['Concept']) == 1){
-                  this.occuranceOne++;
-                }
-
-           //   console.log(this.totalConcept + " " + this.totalTeam + " " + this.totalWhitepaper + " / " + this.totalCount  );
-              }
-            });
-          }
-        }
-      });
 
     });
   }
+
+  getRating(){
+    var ratingRef = firebase.database().ref('/User/Rating/').orderByChild('icoId').equalTo(this.id);
+    ratingRef.once('value', snapshot => {
+      if (snapshot.val()) {
+        for (var key in snapshot.val()) {
+          firebase.database().ref('/User/Rating/'+key).once('value', snapshot2 => {
+            if(snapshot2.val()['icoId'] == this.id) {
+              this.totalCount++;
+
+              this.totalConcept += parseFloat(snapshot2.val()['Concept']);
+              this.totalTeam += parseFloat(snapshot2.val()['Team']);
+              this.totalWhitepaper += parseFloat(snapshot2.val()['Whitepaper']);
+
+
+
+              if(parseInt(snapshot2.val()['Whitepaper']) == 5){
+                this.occuranceFive++;
+              }
+              else if(parseInt(snapshot2.val()['Whitepaper']) == 4){
+                this.occuranceFour++;
+              }
+              else if(parseInt(snapshot2.val()['Whitepaper']) == 3){
+                this.occuranceThree++;
+              }
+              else if(parseInt(snapshot2.val()['Whitepaper']) == 2){
+                this.occuranceTwo++;
+              }
+              else if(parseInt(snapshot2.val()['Whitepaper']) == 1){
+                this.occuranceOne++;
+              }
+
+              if(parseInt(snapshot2.val()['Team']) == 5){
+                this.occuranceFive++;
+              }
+              else if(parseInt(snapshot2.val()['Team']) == 4){
+                this.occuranceFour++;
+              }
+              else if(parseInt(snapshot2.val()['Team']) == 3){
+                this.occuranceThree++;
+              }
+              else if(parseInt(snapshot2.val()['Team']) == 2){
+                this.occuranceTwo++;
+              }
+              else if(parseInt(snapshot2.val()['Team']) == 1){
+                this.occuranceOne++;
+              }
+
+
+              if(parseInt(snapshot2.val()['Concept']) == 5){
+                this.occuranceFive++;
+              }
+              else if(parseInt(snapshot2.val()['Concept']) == 4){
+                this.occuranceFour++;
+              }
+              else if(parseInt(snapshot2.val()['Concept']) == 3){
+                this.occuranceThree++;
+              }
+              else if(parseInt(snapshot2.val()['Concept']) == 2){
+                this.occuranceTwo++;
+              }
+              else if(parseInt(snapshot2.val()['Concept']) == 1){
+                this.occuranceOne++;
+              }
+
+              //   console.log(this.totalConcept + " " + this.totalTeam + " " + this.totalWhitepaper + " / " + this.totalCount  );
+            }
+          });
+        }
+      }
+    });
+  }
+
 
   getIcoDetails(){
     var coinRef = firebase.database().ref('/ICO/All ICO/allico/'+this.id);
@@ -154,6 +162,7 @@ export class IcoDetailsTopHeaderComponent implements OnInit {
     if (distance < 0) {
       return 0;
     }
+
     return hours;
   }
 
@@ -168,6 +177,7 @@ export class IcoDetailsTopHeaderComponent implements OnInit {
     if (distance < 0) {
       return 0;
     }
+
     return minutes;
   }
   countDown_seconds(date_future){

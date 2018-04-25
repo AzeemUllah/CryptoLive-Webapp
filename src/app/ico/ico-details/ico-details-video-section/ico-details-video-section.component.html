@@ -2,16 +2,23 @@
 <section id="video">
   <div class="container">
     <div style="padding-top: 50px" class="row">
-      <div class="col-md-8 col-xs-12">
-        <iframe width="100%" height="355"  id="videoFrame" name="videoFrame" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <div class="col-md-8 col-xs-12" style="    margin-top: 12%;  margin-bottom: 12%;">
+        <iframe *ngIf="videoAvaliable" width="100%" height="355"  id="videoFrame" name="videoFrame" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         <!--<iframe width="100%" height="355"  src ='{{url}}'>-->
         <!--</iframe>-->
-
+        <div *ngIf="!videoAvaliable" class="row">
+          <div class="col-md-offset-4 col-md-2 col-xs-offset-1 col-xs-2 col-sm-offset-4 col-sm-2">
+            <i  _ngcontent-c15="" aria-hidden="true" class="fa fa-ban" style="color: #0097a7; font-size: 500%"></i>
+          </div>
+          <div id="noVideoText" class="col-md-6 col-sm-6 col-xs-9 " style="margin-left: -5%;">
+            <h4 _ngcontent-c8="" style="font-size:1.5em;font-weight: 200;margin-top: 7%;">This ICO has no video.</h4>
+          </div>
+        </div>
       </div>
 
       <div class="col-md-4">
 
-        <table class="table table-hover">
+        <table class="table table-hover ico-short-details-table">
           <thead>
           <tr>
             <th>Token</th>
